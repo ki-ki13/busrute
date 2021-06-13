@@ -99,7 +99,7 @@ require 'box.php';
 function popUp(f, l) {
 		var out = [];
 		if (f.properties) {
-			out.push(f.properties['name']);
+			out.push("Jalur :" + f.properties['JALUR']);
 			l.bindPopup(out.join("<br />"));
 		}
 	}
@@ -132,7 +132,7 @@ function popUp(f, l) {
 		$arrayjalur[] = '{
 			name: "' . $map['jalur'] . '",
 			icon: iconControl("' . $map['warna'] . '"),
-			layer: new L.GeoJSON.AJAX(["assets/map/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . ',pointToLayer: featureToMarker }).addTo(mymap)
+			layer: new L.GeoJSON.AJAX(["assets/geojson/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . ',pointToLayer: featureToMarker }).addTo(mymap)
 			}';
 	}?>
 
