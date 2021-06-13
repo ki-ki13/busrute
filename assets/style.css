@@ -1,0 +1,196 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+.main{
+    display: flex;
+}
+.topnav{
+    position: fixed;
+    width: 20%;
+    color: white;
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+    min-height: 100vh;
+    transition: ease 0.5s;
+}
+.topnav .icon{
+    display: none;
+}
+.list-wrapper{
+    margin-top: 30%;
+    cursor: pointer;
+    position: relative;
+}
+.list{
+    padding: 5% 0;
+    display: flex;
+}
+.list li{
+    list-style: none;
+    font-size: 20px;
+}
+.list:hover{
+    background-color: #002992;
+}
+.list i{
+    font-size: 25px;
+    padding: 15px;
+}
+.header{
+    display: flex;
+    margin-top: 15%;
+}
+.head h2{
+    color: #868f90;
+    padding: 2%;
+    /* line-height: 30%; */
+    float: right;
+    letter-spacing: 5px;
+}
+.head{
+    height: 10.5vh;
+    /* float: right; */
+    width: 80%;
+    position: absolute;
+    right: 0;
+    /* z-index: -1; */
+    background-color: white;
+    box-shadow: 0px 4px 10px 0px rgb(0 0 0 / 25%);
+}
+
+.header i{
+    font-size: 100px;
+    margin: 0 30% auto;
+}
+.flextambahan{
+    width: 20%;
+}
+.map{
+    background-image: url("bg/bg.png");
+    flex: 1;
+   /* z-index: -1; */
+    padding: 5% 3% 3% 3% ;
+    /* margin-top: 8%; */
+}
+#mapid{
+    margin: 3% 0 ;
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.25) ;
+    border-radius: 20px;
+    width:100%;
+    height: 500px;  
+}
+.arah-jadwal{
+    width: 100%;
+    display: flex;
+}
+.arah{
+    margin: 0 3%;
+    flex: 1;
+}
+.stop-title, .jadwal-title{
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+    color: white;
+    padding: 20px;
+}
+.stop-body{
+    margin: 3% 0;
+}
+.stop-body li{
+    font-size: 20px;
+    margin-bottom: 10%;
+}
+.jadwal{
+    margin-right:3% ;
+    flex: 1;
+}
+.footer{
+    background-color: white;
+    color: #868f90;
+    width: 80%;
+    padding: 2% 0 ;
+    float: right;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    body{
+        counter-reset: buscount;
+    }
+    .topnav .list-wrapper li{display: none;}
+    .topnav .list-wrapper i::after{
+        counter-increment: buscount; 
+        padding: 0 5px;
+        content:counter(buscount);
+        font-size: 20px;
+    }
+    .topnav .header {display: none;}
+    .topnav li.icon {
+      font-size: 20px;
+      padding: 20px;
+      display: block;
+    }
+    .arah-jadwal{
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .arah, .jadwal{
+        margin: 3% auto;
+        width: 100%;
+    }
+    .map{
+        padding-top: 10% ;
+    }
+    .jadwal-title{
+        font-size: 15px;
+    }
+    .stop-title{
+        font-size: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .topnav.responsive {
+        flex-wrap: wrap;
+        width: 100%;
+        position: block;
+    }
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive .list-wrapper {
+      margin: 0 0 0 30px;
+      display: block;
+      text-align: left;
+      font-size: 30px;
+    }
+    .topnav.responsive .list-wrapper i{
+        font-size: 30px ;
+    }
+    .topnav.responsive .header{
+        display: flex;
+    }
+    .topnav.responsive .list-wrapper li{
+        display: block;
+    }
+    .mapresponsive{
+        display: none;
+    }
+    .headresponsive{
+        display: none;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .map{
+        padding-top: 25%;
+    }
+  }
+  @media screen and (max-width: 360px){
+      .head h2{
+          font-size: 25px;
+          margin-top: 10%;
+      }
+  }
