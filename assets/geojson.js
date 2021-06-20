@@ -10,8 +10,6 @@ var Layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 		accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	});
  mymap.addLayer(Layer);
-  L.marker([-7.8351312302974385, 110.39227444384483]).addTo(mymap)
-      .bindPopup("<b>Terminal Giwangan,</b><br />Giwangan.").openPopup();
 
 var tjalur1 = [[-7.83702297266836, 110.3650265331058],
 [-7.86721826106307, 110.34511815556272],
@@ -29,74 +27,4 @@ var tjalur3 = [[-7.866397860845492, 110.4076971650416],
 [-7.9207574636933265, 110.38160053088562],
 [-7.920207999572687, 110.43589538112376]];
 
-//   var myStyle = {
-//     "color": "#002992",
-//     "weight": 5,
-//     "opacity": 0.65,
-// };
 
-// rute = L.geoJSON.ajax("assets/map/map1.geojson", {
-//   style: myStyle
-// });
-var i;
-tanda = L.layerGroup();
-for(i = 0; i<tjalur1.length; i++){
-L.marker(tjalur1[i]).addTo(tanda);
-}
-
-// $("#1").click(function(event) {
-// event.preventDefault();
-// if(mymap.hasLayer(rute)) {
-//   $(this).removeClass('selected');
-//   mymap.removeLayer(rute);
-//   mymap.removeLayer(tanda);
-// } else {
-//   mymap.addLayer(rute); 
-//   mymap.addLayer(tanda);       
-//   $(this).addClass('selected');
-// }
-// });
-
-// rute2 = L.geoJSON.ajax("assets/map/map2.geojson", {
-//   style: myStyle
-// });
-// var i;
-// tanda2 = L.layerGroup();
-// for(i = 0; i<tjalur2.length; i++){
-// L.marker(tjalur2[i]).addTo(tanda2);
-// }
-
-// $("#2").click(function(event) {
-//   event.preventDefault();
-//   if(mymap.hasLayer(rute2)) {
-//     $(this).removeClass('selected');
-//     mymap.removeLayer(rute2);
-//     mymap.removeLayer(tanda2);
-//   } else {
-//     mymap.addLayer(rute2); 
-//     mymap.addLayer(tanda2);       
-//     $(this).addClass('selected');
-//   }
-//   });
-
-//   rute3 = L.geoJSON.ajax("assets/map/map3.geojson", {
-//     style: myStyle
-//   });
-//   var i;
-//   tanda3 = L.layerGroup();
-//   for(i = 0; i<tjalur3.length; i++){
-//   L.marker(tjalur3[i]).addTo(tanda3);
-//   }
-  
-//   $("#3").click(function(event) {
-//     event.preventDefault();
-//     if(mymap.hasLayer(rute3)) {
-//       $(this).removeClass('selected');
-//       mymap.removeLayer(rute3);
-//       mymap.removeLayer(tanda3);
-//     } else {
-//       mymap.addLayer(rute3); 
-//       mymap.addLayer(tanda3);       
-//       $(this).addClass('selected');
-//     }
-//     });

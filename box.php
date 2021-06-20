@@ -8,7 +8,7 @@ $stmt2->execute();
 $stmt2->store_result();
 $num_of_rows = $stmt2->num_rows;
 $stmt2->bind_result($id, $stop, $latitude, $longitude, $marker);
-// $stmt2->fetch();
+
 
 while($stmt2 -> fetch()){
     echo "<li>". $stop . "</li>";

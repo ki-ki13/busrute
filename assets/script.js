@@ -13,14 +13,14 @@ function myFunction() {
   }
 }
 
-function showStop(x){
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function() {
-    document.getElementById("changes").innerHTML = this.responseText;
-  }
-  xhttp.open("GET", "box.php?q="+x);
-  xhttp.send();
-}
+// function showStop(x){
+//   const xhttp = new XMLHttpRequest();
+//   xhttp.onload = function() {
+//     document.getElementById("changes").innerHTML = this.responseText;
+//   }
+//   xhttp.open("GET", "box.php?q="+x);
+//   xhttp.send();
+// }
 
 function showJadwal(x){
   const xhttp = new XMLHttpRequest();

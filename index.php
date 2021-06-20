@@ -1,7 +1,8 @@
 <?php
 require 'connect.php';
 require 'database.php';
-require 'box.php';
+// require 'box.php';
+require 'stop.php';
 ?>
 
 
@@ -35,19 +36,19 @@ require 'box.php';
             <?php 
             $num = 1;
             foreach($data_array as $row ){?>
-                <div class="list" id="<?= $row['no']?>" onclick="return showStop(<?= $num?>), showJadwal(<?= $num?>)"><i class="fa fa-bus"></i><li><?= $row['jalur']?></li></div>
+                <div class="list" id="<?= $row['id_jalur']?>" onclick="return showJadwal(<?= $num?>)"><i class="fa fa-bus"></i><li><?= $row['jalur']?></li></div>
                 <?php
                 $num ++; 
             }?>
             </div>
         </div>
-        <div class="flextambahan"></div>
         <div class="head" id="head"><h2>Rute Bus Bantul</h2></div>
+        <div class="flextambahan"></div>
         <div class="map" id="map">
         
             <div id="mapid"></div>
             <div class="arah-jadwal">
-                <div class="arah">
+                <!-- <div class="arah">
                     <div class="card">
                         <div class="card-body">
                             <div class="stop-title"><h3>Pemberhentian</h3></div>
@@ -58,15 +59,18 @@ require 'box.php';
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                     <div class="jadwal"><div class="card">
                         <div class="card-body">
-                        <div class="jadwal-title"><h3>Jadwal</h3></div>
+                        <div class="jadwal-title"><h3>Rute Bus</h3></div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">Hari</th>
-                                <th scope="col">Jam Operasi</th>
+                                <th scope="col">Terminal</th>
+                                <th scope="col">Lama Perjalanan (menit)</th>
+                                <th scope="col">Jadwal 1</th>
+                                <th scope="col">Jadwal 2</th>
+                                <th scope="col">Jadwal 3</th>
                                 </tr>
                             </thead>
                             <tbody id = "schedChanges">
@@ -84,6 +88,7 @@ require 'box.php';
         
     
 </div>
+
 <div class="footer" id="footer"><span>&copy Rute Bus Bantul 2021</span></div>
 
 
@@ -99,58 +104,101 @@ require 'box.php';
 function popUp(f, l) {
 		var out = [];
 		if (f.properties) {
-			out.push("Jalur :" + f.properties['JALUR']);
+			out.push("Jalur " + f.properties['JALUR']);
 			l.bindPopup(out.join("<br />"));
 		}
 	}
 
-    function featureToMarker(feature, latlng) {
-		return L.marker(latlng, {
-			icon: L.divIcon({
-				className: 'marker-' + feature.properties.amenity,
-				html: iconByName(feature.properties.amenity),
-				iconUrl: '../images/markers/' + feature.properties.amenity + '.png',
-				iconSize: [25, 41],
-				iconAnchor: [12, 41],
-				popupAnchor: [1, -34],
-				shadowSize: [41, 41]
-			})
-		});
-	}
+    // function featureToMarker(feature, latlng) {
+	// 	return L.marker(latlng, {
+	// 		icon: L.divIcon({
+	// 			className: 'marker-' + feature.properties.amenity,
+	// 			html: iconByName(feature.properties.amenity),
+	// 			iconUrl: '../images/markers/' + feature.properties.amenity + '.png',
+	// 			iconSize: [25, 41],
+	// 			iconAnchor: [12, 41],
+	// 			popupAnchor: [1, -34],
+	// 			shadowSize: [41, 41]
+	// 		})
+	// 	});
+	// }
 
     function iconControl(name) {
 		return '<i class="fa fa-bus" style="color:' + name + ';border-radius:50%"></i>';
 	}
+
+    var Icon = new L.icon({
+        iconUrl: 'assets/icon/map.png',
+        iconSize:     [12, 21], // size of the icon
+        iconAnchor:   [8, 21], // point of the icon which will correspond to marker's location
+        popupAnchor:  [1, -34] // point from which the popup should open relative to the iconAnchor
+    });
+
     <?php 
     foreach($data_array as $map){?>
         var myStyle<?= $map['id_jalur']?> = {
 			"color": "<?= $map['warna'] ?>",
 			"weight": 5,
 			"opacity": 0.65}
-        
+      
     <?php
 		$arrayjalur[] = '{
 			name: "' . $map['jalur'] . '",
+            id : "'. $map['id_jalur'] .'",
 			icon: iconControl("' . $map['warna'] . '"),
-			layer: new L.GeoJSON.AJAX(["assets/geojson/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . ',pointToLayer: featureToMarker }).addTo(mymap)
+			layer: new L.GeoJSON.AJAX(["assets/unggah/geojson/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . '}).addTo(mymap)
 			}';
-	}?>
+	}
+    ?>
+
+    var jalur = [<?= implode(',', $arrayjalur); ?>]
+    var tikor = <?= $json ?>
+
+    var result = {}
+
+//     for (var i = 0; i < tikor.length; i++) {
+//     var id = tikor[i].id;
+//     var name = tikor[i].name;
+//     if (!result[id]) { // Add new object to result
+//         result[id] = {
+//             id: id,
+//             name: name,
+//             type: "Feature",
+//             geometry:{
+//                 type : "Point",
+//                 coordinates : []
+//             }
+//         };
+//     }
+//     result[id].geometry.coordinates.push(tikor[i].geometry.coordinates);
+// }
+// console.log(result)
+// var coba = L.geoJSON({"type":"Point", "coordinates": result[id].geometry.coordinates},
+//                 {pointToLayer: function (feature, latlng) {
+// 			    return L.marker(latlng, {icon: Icon})
+// 		}
+//     })
 
     var baseLayers = [{
 			name: "Map",
 			layer: Layer
 		}]
-    var overLayers = [{
-		group: "Daftar Jalur",
-		layers: [
-			<?= implode(',', $arrayjalur); ?>
-		]
-	}];
+
+    var overLayers = [
+        {   group: "Daftar Jalur",
+		    layers: jalur },
+        {   group: "stop",
+		    layers: []  }
+    ]
+
+
     var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {
 		collapsibleGroups: true
 	});
 
 	mymap.addControl(panelLayers);
+
+    
     </script>
 
     

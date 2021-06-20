@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+
 $sql = "SELECT * FROM tb_jalur";
 $stmt = $mysqli->prepare($sql);
 $stmt->execute();
