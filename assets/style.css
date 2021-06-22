@@ -30,7 +30,8 @@ body{
 }
 .list li{
     list-style: none;
-    font-size: 20px;
+    font-size: 18px;
+    padding-right: 20px;
 }
 .list:hover{
     background-color: #002992;

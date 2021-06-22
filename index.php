@@ -101,6 +101,9 @@ require 'stop.php';
 
 <script>
 
+var layersJalur = [];
+var layerskategoritikor = [];
+
 function popUp(f, l) {
 		var out = [];
 		if (f.properties) {
@@ -108,7 +111,13 @@ function popUp(f, l) {
 			l.bindPopup(out.join("<br />"));
 		}
 	}
-
+    function popUp1(f, l) {
+		var out = [];
+		if (f.properties) {
+			out.push(f.properties['stop']);
+			l.bindPopup(out.join("<br />"));
+		}
+	}
     // function featureToMarker(feature, latlng) {
 	// 	return L.marker(latlng, {
 	// 		icon: L.divIcon({
@@ -123,8 +132,14 @@ function popUp(f, l) {
 	// 	});
 	// }
 
+
+
     function iconControl(name) {
 		return '<i class="fa fa-bus" style="color:' + name + ';border-radius:50%"></i>';
+	}
+   
+    function iconByImage(image) {
+		return '<img src="assets/unggah/marker/' + image + '" style="width:16px">';
 	}
 
     var Icon = new L.icon({
@@ -134,6 +149,10 @@ function popUp(f, l) {
         popupAnchor:  [1, -34] // point from which the popup should open relative to the iconAnchor
     });
 
+
+//var tikor = <-?= $json?>
+
+    var layerskategoritikor = [];
     <?php 
     foreach($data_array as $map){?>
         var myStyle<?= $map['id_jalur']?> = {
@@ -147,49 +166,48 @@ function popUp(f, l) {
             id : "'. $map['id_jalur'] .'",
 			icon: iconControl("' . $map['warna'] . '"),
 			layer: new L.GeoJSON.AJAX(["assets/unggah/geojson/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . '}).addTo(mymap)
-			}';
-	}
-    ?>
+			}';?>
+
+        var layer = {
+			name: "<?= $map['jalur']?>",
+			icon: iconByImage("<?=  $map['marker']?>"),
+			layer: new L.GeoJSON.AJAX(["<?= 'http://localhost/busrute/stop.php?f=data&p=' . $map['id_jalur'] .''?>"], {
+
+				pointToLayer: function(feature, latlng) {
+					// console.log(feature)
+					return L.marker(latlng, {
+						icon: new L.icon({
+							iconUrl: feature.properties.marker,
+							iconSize: [15, 20]
+						})
+					});
+				},
+				onEachFeature: function(feature, layer) {
+					if (feature.properties && feature.properties.jalur) {
+						layer.bindPopup(feature.properties.popUp);
+					}
+				}
+			}).addTo(mymap)
+		}
+        layerskategoritikor.push(layer);
+        <?php } ?>
+
 
     var jalur = [<?= implode(',', $arrayjalur); ?>]
-    var tikor = <?= $json ?>
-
-    var result = {}
-
-//     for (var i = 0; i < tikor.length; i++) {
-//     var id = tikor[i].id;
-//     var name = tikor[i].name;
-//     if (!result[id]) { // Add new object to result
-//         result[id] = {
-//             id: id,
-//             name: name,
-//             type: "Feature",
-//             geometry:{
-//                 type : "Point",
-//                 coordinates : []
-//             }
-//         };
-//     }
-//     result[id].geometry.coordinates.push(tikor[i].geometry.coordinates);
-// }
-// console.log(result)
-// var coba = L.geoJSON({"type":"Point", "coordinates": result[id].geometry.coordinates},
-//                 {pointToLayer: function (feature, latlng) {
-// 			    return L.marker(latlng, {icon: Icon})
-// 		}
-//     })
 
     var baseLayers = [{
 			name: "Map",
 			layer: Layer
 		}]
 
-    var overLayers = [
-        {   group: "Daftar Jalur",
-		    layers: jalur },
-        {   group: "stop",
-		    layers: []  }
-    ]
+    var overLayers = [{
+		group: "Jalur",
+		layers: jalur
+	},
+    {
+		group: "Pemberhentian",
+		layers: layerskategoritikor
+	}];
 
 
     var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {
