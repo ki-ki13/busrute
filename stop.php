@@ -42,7 +42,7 @@ function data($id = ''){
                 "jalur" => $key['jalur'],
                 "stop" => $key['stop'],
                 "marker" => ($key['marker'] == '') ? ('assets/icons/marker.png') : ('assets/unggah/marker/' . $key['marker']),
-                "popUp" => "Jalur : " . $key['jalur'] . "<br>Pemberhentian : " . $key['jalur']
+                "popUp" => "Jalur : " . $key['jalur'] . "<br>Pemberhentian : " . $key['stop']
                 ];
         $data['geometry'] = [
                 "type" => "Point",
