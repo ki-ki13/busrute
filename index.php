@@ -85,7 +85,7 @@ var layerskategoritikor = [];
 function popUp(f, l) {
 		var out = [];
 		if (f.properties) {
-			out.push("Jalur " + f.properties['JALUR']);
+			out.push( f.properties['JALUR']);
 			l.bindPopup(out.join("<br />"));
 		}
 	}
