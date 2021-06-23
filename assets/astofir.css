@@ -1,0 +1,223 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+.header{
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 10px 8px -5px rgba(0,0,0,0.25);
+}
+.header h3{
+    color: white;
+    width: 100%;
+    padding: 2%;
+    font-size: 40px;
+}
+.header i{
+    padding: 2% 0% 0 3%;
+    font-size: 50px;
+    color: white;
+}
+.main{
+    width: 100%;
+    min-height: 100vh;
+    height: 100% ;
+    display: flex;
+    padding: 5%;
+    background-color:#f0f0f0;
+}
+.map1{
+    flex: 1;
+}
+#mapid{
+    border-radius: 20px;
+    width:100%;
+    height: 100%;
+    box-shadow: 5px 10px 8px -5px rgba(0,41,146,0.25);
+    
+}
+.list1{
+    flex: 1;
+    background-color: white;
+    margin: 0 0 0 2%;
+    border-radius: 20px;
+    box-shadow: 5px 10px 8px -5px rgba(0,41,146,0.25);
+    padding-bottom: 3%;
+}
+.list1 h3{
+    color: #002992;
+    width: 100%;
+    text-align: center;
+    margin: 6% 0 3% 0; 
+    font-weight: bold;
+}
+.toogle{
+    width: 100%;
+    padding: 10% 3% 0 3%;
+}
+.toogle li{
+    list-style: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+.toogle li .Line{
+    width: 100%;
+    height: 2px;
+    background-color:#002992;
+    margin: 20px 0 0 0;
+}
+.toogle li i{
+    font-size: 20px;
+    margin-right: 15px;
+    margin-left: 30px;
+}
+#jalur .lili{
+    padding-top: 20px;
+}
+.muncul{
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+    display: none;
+}
+.stop-wrapper{
+    padding: 5% 0 0 5%;
+}
+/* .stop:first-child{
+    padding-top: 5%;
+} */
+.stop{
+    display: flex;
+    color: white;
+}
+.stop span{
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.bulet{
+    margin-top: 8px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: white;
+}
+.line-wrapper{
+    display: flex;
+    margin-top: 10px; 
+}
+.line{
+    margin: 0 25px 0 5px;
+    width: 3px;
+    height: 80px;
+    background-color: white;
+}
+.stop-wrapper > div:last-of-type .line{
+    background-color: transparent;
+}
+
+.line-wrapper span{
+    color: white;
+    margin-right:50px;
+}
+.line-wrapper p{
+    color: #fefe30;
+}
+.linever{
+    width: 100%;
+} 
+.silang{
+    width: 150px;
+    float: right;
+    color: #fefe30;
+    padding: 4% 4% 4% 0%;
+    font-size: 20px;
+    text-align: right;
+}
+.silang i{
+    margin-right: 10px;
+     cursor: pointer;
+}
+.silang span{
+    cursor: pointer;
+}
+.table-borderless{
+    flex: 5;
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+}
+thead,tbody{
+    color: white;
+}
+.menit{
+    color: #fefe30;
+    margin-left: 25px;
+}
+tbody .bulet{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: white;
+}
+footer{
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(90deg, rgba(0,41,146,1) 0%, rgba(110,86,255,1) 100%);
+    text-align: center;
+}
+.footertxt{
+    color: white;
+    display: inline-block;
+    padding-top: 2%;
+}
+@media only screen and (max-width :800px){
+    .main{
+        display: block;
+        height: 100%;
+        padding: 10% 5%;
+    }
+    .list1{
+        margin-top: 5%;
+        margin-left: 0;
+    }
+    .header h3{
+        padding: 10% 0;
+        font-size: 40px;
+     }
+     .header .fa-map{
+         font-size: 50px;
+         padding: 10% 3% 0 20%;
+     }
+     #mapid{
+        height: 50vh;
+    }
+   .list1 h3{
+       padding: 5% 0 0 0;
+       
+   }
+ }
+ @media only screen and (max-width :400px){
+      .header h3{
+        padding: 10% 0;
+         font-size: 25px;
+     }
+     .header .fa-map{
+         font-size: 40px;
+         padding: 10% 3% 0 10%;
+     }
+     #jalur li{
+        font-size: 15px;
+    }
+    #jalur li .lili{
+        display: flex;
+    }
+    .stop .text-stop span{
+        font-size: 15px;
+    }
+    .stop {
+        width: 100%;
+    }
+ }
