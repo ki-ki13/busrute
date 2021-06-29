@@ -103,7 +103,7 @@ function popUp(f, l) {
 	}
    
     function iconByImage(image) {
-		return '<img src="assets/unggah/marker/' + image + '" style="width:16px">';
+		return '<img src="' + image + '"style="width:16px; height = 16px">';
 	}
 
     var Icon = new L.icon({
@@ -123,16 +123,17 @@ function popUp(f, l) {
 			"opacity": 0.65}
       
     <?php
+        $geojson = str_replace("dl=0","raw=1",$map['linkgeojson']);
 		$arrayjalur[] = '{
 			name: "' . $map['jalur'] . '",
             id : "'. $map['id_jalur'] .'",
 			icon: iconControl("' . $map['warna'] . '"),
-			layer: new L.GeoJSON.AJAX(["assets/unggah/geojson/' . $map['geojson'] . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . '}).addTo(mymap)
+			layer: new L.GeoJSON.AJAX(["' . $geojson . '"],{onEachFeature:popUp,style: myStyle' . $map['id_jalur'] . '}).addTo(mymap)
 			}';?>
 
         var layer = {
 			name: "<?= $map['jalur']?>",
-			icon: iconByImage("<?=  $map['marker']?>"),
+			icon: iconByImage("<?= str_replace("dl=0","raw=1",$map['linkmarker'])?>"),
 			layer: new L.GeoJSON.AJAX(["<?= 'https://rutebus-bantul13.herokuapp.com/stop.php?f=data&p=' . $map['id_jalur'] .''?>"], {
 
 				pointToLayer: function(feature, latlng) {
