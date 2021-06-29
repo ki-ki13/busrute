@@ -4,7 +4,7 @@ function showJadwal(x){
   xhttp.onload = function() {
     document.getElementById("schedChanges"+x).innerHTML = this.responseText;
   }
-  xhttp.open("GET", "jadwal.php?q="+x);
+  xhttp.open("GET", "https://rutebus-bantul13.herokuapp.com/jadwal.php?q="+x);
   xhttp.send();
 }
 
@@ -14,17 +14,18 @@ $('.rute').each(function() {
 })
 console.log(array);
 
-for(let i = 1; i<=array.length; i++){
-  var j = 'rute'+i;
-  console.log(j);
-  $('#rute' + i).each(function(){
+for(let i = 0; i<array.length; i++){
+  // var j = array[i];
+  // console.log(j);
+  $('#rute' + array[i]).each(function(){
     $(this).on('click',function(){
-      $('#muncul'+i).slideToggle();
+      $('#muncul'+array[i]).slideToggle();
     });
   });
 }
 
+
 $(function() {
-  $("#rute1").click();
+  $('#rute' + array[0]).click();
 });
 

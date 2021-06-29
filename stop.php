@@ -8,7 +8,7 @@ function data($id = ''){
     global $mysqli;
     $data_array2 = array();
     if($id != ''){
-        $sql5 = "SELECT tb_stop.id_stop, tb_stop.id_jalur, tb_stop.stop, tb_stop.latitude, tb_stop.longitude, tb_jalur.jalur, tb_jalur.warna, tb_jalur.marker
+        $sql5 = "SELECT tb_stop.id_stop, tb_stop.id_jalur, tb_stop.stop, tb_stop.latitude, tb_stop.longitude, tb_jalur.jalur, tb_jalur.warna, tb_jalur.marker, tb_jalur.linkmarker
         FROM tb_stop
         LEFT JOIN tb_jalur ON tb_stop.id_jalur=tb_jalur.id_jalur
         WHERE tb_stop.id_jalur = ?";
@@ -28,7 +28,7 @@ function data($id = ''){
         $data['properties'] = [
                 "jalur" => $key['jalur'],
                 "stop" => $key['stop'],
-                "marker" => ($key['marker'] == '') ? ('assets/icons/marker.png') : (str_replace("dl=0","raw=1",$map['linkmarker'])),
+                "marker" => ($key['marker'] == '') ? ('assets/icons/marker.png') : (str_replace("dl=0","raw=1",$key['linkmarker'])),
                 "popUp" => "Jalur : " . $key['jalur'] . "<br>Pemberhentian : " . $key['stop']
                 ];
         $data['geometry'] = [
