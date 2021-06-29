@@ -123,7 +123,9 @@ function popUp(f, l) {
 			"opacity": 0.65}
       
     <?php
-        $geojson = str_replace("dl=0","raw=1",$map['linkgeojson']);
+        $gone = ["www.dropbox.com","?dl=0"];
+        $replace = ["dl.dropboxusercontent.com",""];
+        $geojson = str_replace($gone,$replace,$map['linkgeojson']);
 		$arrayjalur[] = '{
 			name: "' . $map['jalur'] . '",
             id : "'. $map['id_jalur'] .'",
