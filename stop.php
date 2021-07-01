@@ -28,7 +28,8 @@ function data($id = ''){
         $data['properties'] = [
                 "jalur" => $key['jalur'],
                 "stop" => $key['stop'],
-                "marker" => ($key['marker'] == '') ? ('assets/icons/marker.png') : (str_replace("dl=0","raw=1",$key['linkmarker'])),
+                "warna" => $key['warna'],
+                //"marker" => ($key['marker'] == '') ? ('assets/icons/marker.png') : (str_replace("dl=0","raw=1",$key['linkmarker'])),
                 "popUp" => "Jalur : " . $key['jalur'] . "<br>Pemberhentian : " . $key['stop']
                 ];
         $data['geometry'] = [

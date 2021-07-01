@@ -101,6 +101,9 @@ function popUp(f, l) {
     function iconControl(name) {
 		return '<i class="fa fa-bus" style="color:' + name + ';border-radius:50%"></i>';
 	}
+    function iconMarker(name) {
+		return '<i class="fa fa-map-marker-alt" style="color:' + name + ';border-radius:50%"></i>';
+	}
    
     function iconByImage(image) {
 		return '<img src="' + image + '"style="width:16px; height = 16px">';
@@ -135,13 +138,15 @@ function popUp(f, l) {
 
         var layer = {
 			name: "<?= $map['jalur']?>",
-			icon: iconByImage("<?= str_replace("dl=0","raw=1",$map['linkmarker'])?>"),
+			icon: iconMarker("<?= $map['warna']?>"),
 			layer: new L.GeoJSON.AJAX(["<?= 'https://rutebus-bantul13.herokuapp.com/stop.php?f=data&p=' . $map['id_jalur'] .''?>"], {
 
 				pointToLayer: function(feature, latlng) {
 					return L.marker(latlng, {
-						icon: new L.icon({
-							iconUrl: feature.properties.marker,
+						icon: L.divIcon({
+							className : 'yoyo',
+							html :'<i class="fa fa-map-marker-alt" style="color: '+ feature.properties.warna + '; background-color: none"></i>',
+							//iconUrl: iconMarker(feature.properties.warna),
 							iconSize: [15, 20]
 						})
 					});
