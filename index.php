@@ -175,7 +175,8 @@ function popUp(f, l) {
 
 
     var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {
-		collapsibleGroups: true
+		collapsibleGroups: true,
+        collapsed :true
 	});
 
 	mymap.addControl(panelLayers);
