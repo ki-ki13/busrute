@@ -32,7 +32,7 @@ body{
 }
 .map1{
     flex: 1;
-    height: 150vh;
+    height: 100vh;
 }
 #mapid{
     border-radius: 20px;
