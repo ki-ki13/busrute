@@ -5,7 +5,8 @@ $sql3 = "SELECT tb_stop.stop, tb_jadwal.durasi, tb_jadwal.jadwal1, tb_jadwal.jad
 FROM tb_jadwal 
 LEFT JOIN tb_stop ON tb_jadwal.id_stop=tb_stop.id_stop 
 LEFT JOIN tb_jalur ON tb_jadwal.id_jalur = tb_jalur.id_jalur
-WHERE tb_jadwal.id_jalur = ?";
+WHERE tb_jadwal.id_jalur = ?
+ORDER BY tb_jadwal.jadwal1 ASC";
 $stmt3 = $mysqli->prepare($sql3);
 $stmt3->bind_param("i", $_GET['q']);
 $stmt3->execute();
