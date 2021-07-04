@@ -31,7 +31,9 @@ body{
     background-color:#f0f0f0;
 }
 .map1{
-    flex: 1;
+    position: sticky;
+    top: 0;
+    flex: 1.5;
     height: 100vh;
 }
 #mapid{
@@ -193,6 +195,7 @@ footer{
          padding: 10% 3% 0 20%;
      }
      .map1{
+         position: relative;
          height: 100%;
      }
      #mapid{
