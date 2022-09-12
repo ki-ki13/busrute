@@ -139,7 +139,7 @@ function popUp(f, l) {
         var layer = {
 			name: "<?= $map['jalur']?>",
 			icon: iconMarker("<?= $map['warna']?>"),
-			layer: new L.GeoJSON.AJAX(["<?= 'https://rutebus-bantul13.herokuapp.com/stop.php?f=data&p=' . $map['id_jalur'] .''?>"], {
+			layer: new L.GeoJSON.AJAX(["<?= 'http://localhost/busrute//stop.php?f=data&p=' . $map['id_jalur'] .''?>"], {
 
 				pointToLayer: function(feature, latlng) {
 					return L.marker(latlng, {

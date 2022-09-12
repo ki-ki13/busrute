@@ -4,7 +4,7 @@ function showJadwal(x){
   xhttp.onload = function() {
     document.getElementById("schedChanges"+x).innerHTML = this.responseText;
   }
-  xhttp.open("GET", "https://rutebus-bantul13.herokuapp.com/jadwal.php?q="+x);
+  xhttp.open("GET", "http://localhost/busrute//jadwal.php?q="+x);
   //xhttp.open("GET", "jadwal.php?q="+x);
   xhttp.send();
 }
