@@ -1,19 +1,21 @@
 <?php
 require 'connect.php';
 require 'database.php';
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
 function data($id = ''){
     global $mysqli;
     $data_array2 = array();
     if($id != ''){
-        $sql5 = "SELECT tb_stop.id_stop, tb_stop.id_jalur, tb_stop.stop, tb_stop.latitude, tb_stop.longitude, tb_jalur.jalur, tb_jalur.warna, tb_jalur.marker, tb_jalur.linkmarker
+        $sql5 = "SELECT tb_stop.id_stop, tb_stop.id_jalur, tb_stop.stop, tb_stop.latitude, tb_stop.longitude, tb_jalur.jalur, tb_jalur.warna, tb_jalur.marker
         FROM tb_stop
         LEFT JOIN tb_jalur ON tb_stop.id_jalur=tb_jalur.id_jalur
         WHERE tb_stop.id_jalur = ?";
         $stmt5 = $mysqli->prepare($sql5);
         $stmt5 -> bind_param('i', $id);
+        echo $mysqli->error;
         $stmt5->execute();
         $result5 = $stmt5->get_result();
         while($data5 = $result5 -> fetch_assoc()){
@@ -38,7 +40,8 @@ function data($id = ''){
                 ];
         $response[] = $data;
     }
-    echo json_encode($response, JSON_PRETTY_PRINT);
+    print_r(json_encode($response));
+    return json_encode($response, JSON_PRETTY_PRINT);
 }
 
 if(isset($_GET['f'])){
@@ -46,5 +49,6 @@ if(isset($_GET['f'])){
         $_GET['f']($_GET['p']);
     }
 }
+
 
 

@@ -126,9 +126,10 @@ function popUp(f, l) {
 			"opacity": 0.65}
       
     <?php
-        $gone = ["www.dropbox.com","?dl=0"];
-        $replace = ["dl.dropboxusercontent.com",""];
-        $geojson = str_replace($gone,$replace,$map['linkgeojson']);
+        // $gone = ["www.dropbox.com","?dl=0"];
+        // $replace = ["dl.dropboxusercontent.com",""];
+        // $geojson = str_replace($gone,$replace,$map['geojson']);
+        $geojson = "http://localhost/busrute/assets/map/{$map['geojson']}";
 		$arrayjalur[] = '{
 			name: "' . $map['jalur'] . '",
             id : "'. $map['id_jalur'] .'",
